@@ -1,4 +1,4 @@
-import { NEWS_DELETE_SUCCESS, NEWS_EMPTY_ID, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_FAIL, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS } from "../type";
+import { NEWS_DELETE_SUCCESS, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_FAIL, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS, NEWS_EMPTY_ID } from "../type";
 import axios from "axios";
 
 
@@ -99,11 +99,7 @@ export const Update_Data = (news) =>{
     return async (dispatch) =>{
         
         let res = await axios.put(`http://localhost:3030/NewsList/${news.id}`, news)
-        dispatch({
-            type : NEWS_UPDATE_SUCCESS,
-            payload : res.data
-            
-        })
+        dispatch(fetchNews())
 
         // dispatch(newsFail(error.message))
 

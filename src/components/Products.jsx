@@ -33,7 +33,7 @@ const Products = () => {
                             <h5 class="card-title">{val.title}</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">{val.category}</h6>
                             <p class="card-text">{val.description}</p>
-                            <button className='m-2' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {deleteData(val.id)}}>Delete</button>
+                            <button className='m-2' onClick={() => {deleteData(val.id)}}>Delete</button>
                             <button data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {View_Data(val.id)}}>View</button>
                         </div>
                     </div>
