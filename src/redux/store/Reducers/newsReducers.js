@@ -1,35 +1,82 @@
-import { NEWS_FAIL, NEWS_REQUEST, NEWS_SUCCESS } from "../type"
+import { NEWS_DELETE_SUCCESS, NEWS_EMPTY_ID, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS } from "../type"
 
 let initialstate = {
-    News : [],
-    isLoading : false,
-    error : null
+    News: [],
+    isLoading: false,
+    error: null,
+    id : null
 }
 
-
-
- export const newsReducer = (state = initialstate, action) => {
-    switch(action.type){
-        case NEWS_REQUEST:
+export const newsReducer = (state = initialstate, action) => {
+    switch (action.type) {
+        case NEWS_GET_REQUEST:
             return {
                 ...state,
-                isLoading : true,
-                error : null
+                isLoading: true,
+                error: null
             };
-            case NEWS_SUCCESS:
-                return {
+        case NEWS_GET_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                News: action.payload
+            };
+        case NEWS_GET_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            };
+
+        case NEWS_POST_SUCCESS:
+            let newNews = [...state.News, action.payload]
+            return {
+                ...state,
+                isLoading: false,                
+                News: newNews
+            }
+
+            case NEWS_DELETE_SUCCESS:
+            
+            return {
+                ...state,
+                isLoading: false,                
+                News: state.News.filter((obj) => obj.id !== action.payload.id)
+            }
+
+            case NEWS_VIEW_SUCCESS:
+            
+            return {
+                ...state,
+                isLoading: false,                
+                id:action.payload
+            }
+
+            case NEWS_UPDATE_SUCCESS:
+            
+            return {
+                ...state,
+                isLoading: false,                
+                News : state.News.map((val)=>{
+                        if(val.id === action.payload.id){
+                              return action.payload                  
+                        }
+                        else{
+                            return val
+                        }
+                }),
+                id:null
+            }
+
+            case NEWS_EMPTY_ID:{
+                return{
                     ...state,
-                    isLoading : false,
-                    News : action.payload
-                }; 
-                case NEWS_FAIL:
-                    return {
-                        ...state,
-                        isLoading : false,
-                        error : action.payload
-                    }; 
-                default:
-                    return state;            
+                    id:null 
+                }
+            }
+
+        default:
+            return state;
     }
 }
 

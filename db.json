@@ -1,0 +1,28 @@
+{
+  "NewsList": [
+    {
+      "title": "Scientists Make Cancer Research",
+      "description": "A team of researchers has discovered a new potential treatment for cancer.",
+      "category": "HealthHHHHH222",
+      "id": "f8c6"
+    },
+    {
+      "title": "Stock Market Surges to All-Time High",
+      "description": "Investor optimism drives major gains across all sectors, with tech stocks leading the way.",
+      "category": "Stock Market",
+      "id": "fd5c"
+    },
+    {
+      "title": "Political Unrest Continues in Region X",
+      "description": "Protests escalate as citizens demand government reforms in the face of economic turmoil.",
+      "category": "Politicalppppp",
+      "id": "003d"
+    },
+    {
+      "id": "003d",
+      "title": "Political Unrest Continues in Region X",
+      "description": "Protests escalate as citizens demand government reforms in the face of economic turmoil.",
+      "category": "Politicaliiii"
+    }
+  ]
+}
