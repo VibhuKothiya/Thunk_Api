@@ -1,22 +1,36 @@
 {
   "NewsList": [
     {
-      "title": "Scientists Make Cancer Research",
+      "title": "Scientists",
       "description": "A team of researchers has discovered a new potential treatment for cancer.",
       "category": "HealthHHHHH222",
       "id": "f8c6"
     },
     {
-      "title": "Stock Market Surges to All-Time High",
+      "title": "Stock Market",
       "description": "Investor optimism drives major gains across all sectors, with tech stocks leading the way.",
       "category": "Stock Market",
       "id": "fd5c"
     },
     {
       "id": "003d",
-      "title": "Political Unrest Continues in Region X",
+      "title": "Political",
       "description": "Protests escalate as citizens demand government reforms in the face of economic turmoil.",
-      "category": "Politicaliiii"
+      "category": "Political"
+    },
+    {
+      "id": "d237",
+      "title": "IPL",
+      "category": "Match",
+      "description": "The Indian Premier League (IPL), also known as the TATA IPL for sponsorship reasons,"
     }
-  ]
+  ],
+
+    "Login" :[{
+
+      "id": "1",
+      "email": "vibhuti@gmail.com",
+      "password": "123456"
+    }]
+  
 }

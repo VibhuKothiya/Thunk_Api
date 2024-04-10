@@ -1,10 +1,11 @@
-import { NEWS_DELETE_SUCCESS, NEWS_EMPTY_ID, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS } from "../type"
+import { ADMIN_LOGIN_FAIL, ADMIN_LOGIN_SUCCESS, NEWS_DELETE_SUCCESS, NEWS_EMPTY_ID, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS } from "../type"
 
 let initialstate = {
     News: [],
     isLoading: false,
     error: null,
-    id : null
+    id : null,
+    admin : null
 }
 
 export const newsReducer = (state = initialstate, action) => {
@@ -72,6 +73,22 @@ export const newsReducer = (state = initialstate, action) => {
                 return{
                     ...state,
                     id:null 
+                }
+            }
+
+            case ADMIN_LOGIN_SUCCESS:{
+                return{
+                    ...state,
+                    isLoading:false,
+                    admin : action.payload,
+                    error : null
+                }
+            }
+
+            case ADMIN_LOGIN_FAIL:{
+                return{
+                    ...state,
+                    error : alert(action.payload)
                 }
             }
 

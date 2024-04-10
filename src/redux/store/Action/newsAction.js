@@ -1,5 +1,6 @@
-import { NEWS_DELETE_SUCCESS, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_FAIL, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS, NEWS_EMPTY_ID } from "../type";
+import { NEWS_DELETE_SUCCESS, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_FAIL, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS, NEWS_EMPTY_ID, ADMIN_LOGIN_REQUEST, ADMIN_LOGIN_SUCCESS, ADMIN_LOGIN_FAIL } from "../type";
 import axios from "axios";
+
 
 
 //fetch-News
@@ -99,7 +100,10 @@ export const Update_Data = (news) =>{
     return async (dispatch) =>{
         
         let res = await axios.put(`http://localhost:3030/NewsList/${news.id}`, news)
-        dispatch(fetchNews())
+        dispatch({
+            type : NEWS_UPDATE_SUCCESS,
+            payload : news
+        })
 
         // dispatch(newsFail(error.message))
 
@@ -121,6 +125,34 @@ export const News_Empty_Id = () =>{
 
     }
 }
+
+//Login-Admin
+export const loginAdmin = (loginData) =>{
+    return async (dispatch) => {
+        dispatch({type : ADMIN_LOGIN_REQUEST})
+        let res = await axios.get('http://localhost:3030/Login', {
+            params : loginData
+        });
+
+        const admin = res.data[0]
+        console.log(admin, "from admin");
+        if(admin){
+            dispatch({
+                type : ADMIN_LOGIN_SUCCESS,
+                payload : admin
+            })
+        }
+        else{
+            dispatch({
+                type : ADMIN_LOGIN_FAIL,
+                payload : "invalid email or password"
+            })
+        }
+    }
+}
+
+
+
 
 
 

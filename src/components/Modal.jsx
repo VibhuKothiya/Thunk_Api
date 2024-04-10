@@ -14,8 +14,15 @@ const inputHandle = (e) =>{
     setNewsList({...news, [e.target.name] : e.target.value})
 }
 
-const addData = () => {
-    dispatch(Add_News(news));
+const addData = () => {   
+
+    if(!news.title || !news.description || !news.category){
+        alert("fill all the data")
+    }
+    else
+    {
+      dispatch(Add_News(news));
+    }
 }
 useEffect(()=>{
   console.log(NewsId,"newsiddddd");
