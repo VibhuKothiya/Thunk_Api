@@ -1,25 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector} from 'react-redux';
 import Modal from './Modal';
-import Products from './Products';
-import Product from '../pages/Product';
+
+import {useDispatch} from 'react-redux'
+import { fetchNews, logoutAdmin } from '../redux/store/Action/newsAction';
+import LoginForm from './LoginForm';
+import Products from './Products'
+import { ADMIN_LOGIN_SUCCESS } from '../redux/store/type';
 
 const Navbar = () => {
-  const { News } = useSelector((state) => state.NewsList);
+  let dispatch = useDispatch()
+  const { News, isLogin } = useSelector((state) => state.NewsList);
   const [search, setSearch] = useState('');
 
   const searchData = (e) =>{
     setSearch(e.target.value);
   };
-
+  useEffect(() => {    
+    dispatch(fetchNews());
+    },[]);
+     
   const filteredNews = search ? News.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())) : News;
 
-  return (
+  const handleLogout = () =>{    
+      // Remove admin data from localStorage
+      // localStorage.removeItem("LoginData");
+  
+      // Dispatch action to reset login state
+      dispatch(logoutAdmin());
+    
+  }
 
+  return (
+    <>
+    {isLogin? (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">Navbar</a>
+          <a className="navbar-brand">Navbar</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -29,7 +47,7 @@ const Navbar = () => {
                 <a className="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
+                <a className="nav-link">Link</a>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,16 +66,21 @@ const Navbar = () => {
               
             </form>
             <Modal />
+            <div className="logout">
+              <button onClick={handleLogout} className="btn btn-secondary m-3">Logout</button>
+            </div>
           </div>
         </div>
       </nav>
-      <div className="row">      
-            
+      <div className="row">             
       {filteredNews.map((news, index) => (
-        <Product key={index} news={news} />
+        <Products key={index} news={news}/>
       ))}
       </div>
       </div>
+    ):(<LoginForm />)
+      }
+      </>
    
   );
 };

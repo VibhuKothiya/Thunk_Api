@@ -21,16 +21,30 @@
     {
       "id": "d237",
       "title": "IPL",
-      "category": "Match",
+      "category": "Match33",
       "description": "The Indian Premier League (IPL), also known as the TATA IPL for sponsorship reasons,"
     }
   ],
-
-    "Login" :[{
-
-      "id": "1",
+  "Login": [
+    {
       "email": "vibhuti@gmail.com",
+      "password": "123456",
+      "id": "783c"
+    },
+    {
+      "id": "1ba4",
+      "email": "vibhuti@yahoo.com",
+      "password": "789789"
+    },
+    {
+      "id": "c369",
+      "email": "yashika@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": "40c8",
+      "email": "vibhutikothiya@gmail.com",
       "password": "123456"
-    }]
-  
+    }
+  ]
 }

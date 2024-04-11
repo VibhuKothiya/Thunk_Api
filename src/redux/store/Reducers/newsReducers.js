@@ -1,11 +1,14 @@
-import { ADMIN_LOGIN_FAIL, ADMIN_LOGIN_SUCCESS, NEWS_DELETE_SUCCESS, NEWS_EMPTY_ID, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS } from "../type"
+import { ADMIN_LOGIN_FAIL, ADMIN_LOGIN_SUCCESS, ADMIN_LOGOUT_SUCCESS, NEWS_DELETE_SUCCESS, NEWS_EMPTY_ID, NEWS_GET_FAIL, NEWS_GET_REQUEST, NEWS_GET_SUCCESS, NEWS_POST_SUCCESS, NEWS_UPDATE_SUCCESS, NEWS_VIEW_SUCCESS, SIGNUP_USER_SUCCESS } from "../type"
 
 let initialstate = {
     News: [],
     isLoading: false,
     error: null,
-    id : null,
-    admin : null
+    id: null,
+    admin: null,
+    isLogin: false,
+    userLogin: null,
+    signUpUserData: []
 }
 
 export const newsReducer = (state = initialstate, action) => {
@@ -33,64 +36,82 @@ export const newsReducer = (state = initialstate, action) => {
             let newNews = [...state.News, action.payload]
             return {
                 ...state,
-                isLoading: false,                
+                isLoading: false,
                 News: newNews
             }
 
-            case NEWS_DELETE_SUCCESS:
-            
+        case NEWS_DELETE_SUCCESS:
+
             return {
                 ...state,
-                isLoading: false,                
+                isLoading: false,
                 News: state.News.filter((obj) => obj.id !== action.payload.id)
             }
 
-            case NEWS_VIEW_SUCCESS:
-            
+        case NEWS_VIEW_SUCCESS:
+
             return {
                 ...state,
-                isLoading: false,                
-                id:action.payload
+                isLoading: false,
+                id: action.payload
             }
 
-            case NEWS_UPDATE_SUCCESS:
-            
+        case NEWS_UPDATE_SUCCESS:
+
             return {
                 ...state,
-                isLoading: false,                
-                News : state.News.map((val)=>{
-                        if(val.id === action.payload.id){
-                              return action.payload                  
-                        }
-                        else{
-                            return val
-                        }
+                isLoading: false,
+                News: state.News.map((val) => {
+                    if (val.id === action.payload.id) {
+                        return action.payload
+                    }
+                    else {
+                        return val
+                    }
                 }),
-                id:null
+                id: null
             }
 
-            case NEWS_EMPTY_ID:{
-                return{
-                    ...state,
-                    id:null 
-                }
+        case NEWS_EMPTY_ID: {
+            return {
+                ...state,
+                id: null
+            }
+        }
+
+        case ADMIN_LOGIN_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+                admin: action.payload,
+                error: null,
+                isLogin: true
+            }
+        }
+
+        case ADMIN_LOGIN_FAIL: {
+            return {
+                ...state,
+                error: alert(action.payload)
+            }
+        }
+
+        case ADMIN_LOGOUT_SUCCESS: {
+            return {
+                ...state,
+                isLogin: false,
+                ...initialstate
+            }
+        }
+
+        case SIGNUP_USER_SUCCESS:
+            let newSignupData = [...state.signUpUserData, action.payload]
+            return {
+                ...state,
+                isLoading: false,
+                signUpUserData: newSignupData
             }
 
-            case ADMIN_LOGIN_SUCCESS:{
-                return{
-                    ...state,
-                    isLoading:false,
-                    admin : action.payload,
-                    error : null
-                }
-            }
-
-            case ADMIN_LOGIN_FAIL:{
-                return{
-                    ...state,
-                    error : alert(action.payload)
-                }
-            }
 
         default:
             return state;

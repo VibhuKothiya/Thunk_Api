@@ -25,7 +25,7 @@ const addData = () => {
     }
 }
 useEffect(()=>{
-  console.log(NewsId,"newsiddddd");
+  // console.log(NewsId,"newsiddddd");
     if(NewsId && typeof NewsId === 'string'){
       console.log(NewsId, "modaaaalll");
       axios.get(`http://localhost:3030/NewsList/${NewsId}`).then((res)=>{
@@ -46,25 +46,25 @@ const UpdateData = () =>{
   return (
     <div>
       
-<button type="button" class="btn btn-secondary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" className="btn btn-secondary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add Topic
 </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Product</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="exampleModalLabel">Add Product</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
         <lable>Title: </lable><input type="text" name='title' value={news.title} onChange={inputHandle} className='m-2'/><br/>
         <lable>Category: </lable><input type="text" name='category' value={news.category} onChange={inputHandle} className='m-2'/><br/>
         <lable>Description: </lable><input type="text" name='description' value={news.description} onChange={inputHandle} className='m-2'/>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={()=>{
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={()=>{
           if(news.id && news){
             console.log(news.id);
             UpdateData()

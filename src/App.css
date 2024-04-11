@@ -67,6 +67,9 @@ a {
   font-size: 12px !important;
 }
 
+nav a{
+  font-size: 16px !important;
+}
 .login {
   position: relative;
   width: 390px;
