@@ -1,12 +1,6 @@
 {
   "NewsList": [
     {
-      "title": "Scientists",
-      "description": "A team of researchers has discovered a new potential treatment for cancer.",
-      "category": "HealthHHHHH222",
-      "id": "f8c6"
-    },
-    {
       "title": "Stock Market",
       "description": "Investor optimism drives major gains across all sectors, with tech stocks leading the way.",
       "category": "Stock Market",
@@ -19,10 +13,22 @@
       "category": "Political"
     },
     {
-      "id": "d237",
+      "id": "10a8",
       "title": "IPL",
-      "category": "Match33",
+      "category": "Match",
       "description": "The Indian Premier League (IPL), also known as the TATA IPL for sponsorship reasons,"
+    },
+    {
+      "id": "ac24",
+      "title": "Corruption",
+      "description": "The most common types or categories of corruption are supply versus...",
+      "category": "Price"
+    },
+    {
+      "id": "c367",
+      "title": "Stock Market",
+      "category": "fd",
+      "description": "dc"
     }
   ],
   "Login": [
@@ -45,6 +51,19 @@
       "id": "40c8",
       "email": "vibhutikothiya@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": "660d",
+      "email": "uniquefashionworld01@gmail.com",
+      "password": "123789"
+    },
+    {
+      "id": "c792"
+    },
+    {
+      "id": "a750",
+      "email": "vibhuti123@gmail.com",
+      "password": "123789"
     }
   ]
 }

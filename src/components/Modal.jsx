@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Add_News, Update_Data, fetchNews } from '../redux/store/Action/newsAction';
+import { Add_News, Update_Data } from '../redux/store/Action/newsAction';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const Modal = () => {
   let NewsId= useSelector((state)=>state.NewsList.id)
+  let {dataAdded, News}= useSelector((state)=>state.NewsList)
   // console.log(NewsId, "selector");
 
 const dispatch = useDispatch()
@@ -15,15 +17,46 @@ const inputHandle = (e) =>{
 }
 
 const addData = () => {   
-
+  const isDuplicate = News.some((item) => item.title === news.title);
     if(!news.title || !news.description || !news.category){
         alert("fill all the data")
     }
     else
     {
-      dispatch(Add_News(news));
+      if(isDuplicate){
+        alert("title already exist")
+      }
+      else{
+        dispatch(Add_News(news));
+        setNewsList({
+        title : '',
+        description : '',
+        category:''
+      })
+      }
+      
     }
 }
+
+//Alert  
+useEffect(() => {
+  if (dataAdded) {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Your work has been added",
+      showConfirmButton: false,
+      timer: 1500,
+      customClass: {
+        popup: 'custom-alert-popup',        
+        title : 'custom-alert-title',
+        content : 'custom-alert-content'
+
+      }
+    });
+  }
+}, [dataAdded]);  
+
 useEffect(()=>{
   // console.log(NewsId,"newsiddddd");
     if(NewsId && typeof NewsId === 'string'){
@@ -37,14 +70,12 @@ useEffect(()=>{
 
 const UpdateData = () =>{
   dispatch(Update_Data(news))
-  // setNewsList()
-
-  
+  // setNewsList()  
 }
 
     
-  return (
-    <div>
+return (
+  <div>
       
 <button type="button" className="btn btn-secondary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add Topic

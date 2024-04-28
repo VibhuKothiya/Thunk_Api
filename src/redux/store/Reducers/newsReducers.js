@@ -8,7 +8,9 @@ let initialstate = {
     admin: null,
     isLogin: false,
     userLogin: null,
-    signUpUserData: []
+    signUpUserData: [],
+    dataAdded: false
+
 }
 
 export const newsReducer = (state = initialstate, action) => {
@@ -23,7 +25,8 @@ export const newsReducer = (state = initialstate, action) => {
             return {
                 ...state,
                 isLoading: false,
-                News: action.payload
+                News: action.payload,
+
             };
         case NEWS_GET_FAIL:
             return {
@@ -33,15 +36,15 @@ export const newsReducer = (state = initialstate, action) => {
             };
 
         case NEWS_POST_SUCCESS:
-            let newNews = [...state.News, action.payload]
+
             return {
                 ...state,
                 isLoading: false,
-                News: newNews
+                News: [...state.News, action.payload],
+                dataAdded: true
             }
 
         case NEWS_DELETE_SUCCESS:
-
             return {
                 ...state,
                 isLoading: false,
@@ -49,7 +52,6 @@ export const newsReducer = (state = initialstate, action) => {
             }
 
         case NEWS_VIEW_SUCCESS:
-
             return {
                 ...state,
                 isLoading: false,
@@ -57,7 +59,6 @@ export const newsReducer = (state = initialstate, action) => {
             }
 
         case NEWS_UPDATE_SUCCESS:
-
             return {
                 ...state,
                 isLoading: false,
@@ -97,6 +98,7 @@ export const newsReducer = (state = initialstate, action) => {
         }
 
         case ADMIN_LOGOUT_SUCCESS: {
+            // localStorage.removeItem("LoginData");
             return {
                 ...state,
                 isLogin: false,
@@ -111,7 +113,6 @@ export const newsReducer = (state = initialstate, action) => {
                 isLoading: false,
                 signUpUserData: newSignupData
             }
-
 
         default:
             return state;

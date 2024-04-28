@@ -22,7 +22,7 @@ body {
   position: relative;
   min-height: 100vh;
   max-width: 100% !important;
-  background-color: #161623;
+  background-color: #1f1f2e;
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -224,4 +224,18 @@ nav a{
   color: #fff;
   font-weight: 100;
   font-size: 0.7rem;
+}
+
+/* Alert */
+.custom-alert-popup {
+  width: 200px; /* Set the desired width */
+  height: 200px;
+}
+
+.custom-alert-title {
+  font-size: 14px; /* Adjust the font size of the title */
+}
+
+.custom-alert-content {
+  font-size: 12px; /* Adjust the font size of the content */
 }

@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginAdmin, newSignUp } from '../redux/store/Action/newsAction';
-import { Link, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'
-import { ADMIN_LOGIN_SUCCESS } from '../redux/store/type';
-
 
 const LoginForm = () => {
 
@@ -13,51 +9,43 @@ const LoginForm = () => {
     const [signupData, setSignupData] = useState({});
 
     let dispatch = useDispatch();
-    const {  isLogin } = useSelector((state) => state.NewsList); 
-
+   
     const inputHandle = (e) => {
-        if(signup ){
-            setSignupData({...signupData, [e.target.name]:e.target.value})             
+        if (signup) {
+            setSignupData({ ...signupData, [e.target.name]: e.target.value })
         }
-        else{
+        else {
             setloginData({ ...loginData, [e.target.name]: e.target.value })
         }
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log(loginData.email, "login emaillll");
         if (!loginData.email || !loginData.password) {
             return alert("Fill all the data")
         }
-        else { 
+        else {
             dispatch(loginAdmin(loginData))
         }
     }
-
-    // Stay logged-in
-    // useEffect(() => {
-    //     const storedLoginData = localStorage.getItem("LoginData");
-    //     const admin = JSON.parse(storedLoginData);
-    //     if (admin) {          
-    //       dispatch({
-    //         type: ADMIN_LOGIN_SUCCESS,
-    //         payload: admin
-    //       });
-    //     }
-    //   }, []);
 
     //Sign-up
     const signupUser = () => {
         console.log("Sign Uppppp");
         setSignup(true)
     }
-    const backLogin = () =>{
+    const backLogin = () => {
         setSignup(false)
     }
 
     const signUp = () => {
-        dispatch(newSignUp(signupData))
+        if (!signupData.email || !signupData.password) {
+            return alert("Fill all the data")
+        }
+        else {
+            dispatch(newSignUp(signupData))
+        }
     }
 
     return (
@@ -90,7 +78,7 @@ const LoginForm = () => {
                         {/* onClick={(e) => handleSubmit(e)} */}
                         <div className="links">
                             <p onClick={(backLogin)} style={{ color: '#ffff', cursor: 'pointer' }}>Login</p>
-                            
+
                         </div>
                     </form>
                 </div>) : (<div className="login">
